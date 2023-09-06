@@ -1,0 +1,15 @@
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Upload</button>
+</form>
+
+{% for image in images %}
+<p>{{image.image.storage}}</p>
+<p>{{image.image.path}}</p>
+<img
+  src="{{ image.image.url}}"
+  alt="{{image.title}}"
+  style="max-height: 300px"
+/>
+<a href="/delete/{{image.id}}/">DELETE</a>
+{% endfor %}
